@@ -1,11 +1,14 @@
 import React from 'react'
 import "./Todos.css";
 import Todo from '../todo/Todo';
-const Todos = ({todoTitle, setTodoTitle, todos, setTodos, editableTodo, setEditableTodo}) => {
+import todoContext from '../../contexts/todoContext';
+import { useContext } from 'react';
+const Todos = () => {
+  const {todos} = useContext(todoContext);
   return (
     <div>
       {
-        todos.map(todo => <Todo key={todo.id} todo={todo} todoTitle={todoTitle} setTodoTitle={setTodoTitle} todos={todos} setTodos={setTodos} editableTodo={editableTodo} setEditableTodo={setEditableTodo}></Todo>)
+        todos.map(todo => <Todo key={todo.id} todo={todo}></Todo>)
       }
     </div>
   )

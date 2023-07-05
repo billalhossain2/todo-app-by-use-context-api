@@ -1,7 +1,9 @@
-
 import "./Form.css";
-const Form = ({todoTitle, setTodoTitle, todos, setTodos, editableTodo, setEditableTodo}) => {
-
+import todoContext from "../../contexts/todoContext";
+import { useContext } from "react";
+const Form = () => {
+  const {todoTitle, setTodoTitle, todos, setTodos, editableTodo, setEditableTodo} = useContext(todoContext)
+  
   const handleChange = (ev) => setTodoTitle(ev.target.value);
   const addTodo = () => setTodos([...todos, {id: Date.now(),title: todoTitle, completed: false}]);
   

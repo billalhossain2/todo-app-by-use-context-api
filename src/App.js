@@ -1,29 +1,26 @@
-import Todos from "./components/todos/Todos";
-import Form from "./components/form/Form";
+import TodoWrapper from "./components/todoWrapper/TodoWrapper";
 import "./App.css";
 import React, { useState } from "react";
+import todoContext from "./contexts/todoContext";
 function App() {
   const [todoTitle, setTodoTitle] = useState("");
   const [todos, setTodos] = useState([]);
   const [editableTodo, setEditableTodo] = useState(null);
+  //create an object with all states
+  const todoState = {
+    todoTitle,
+    setTodoTitle,
+    todos,
+    setTodos,
+    editableTodo,
+    setEditableTodo,
+  };
+
   return (
     <div className="App">
-      <Form
-      todoTitle={todoTitle}
-      setTodoTitle={setTodoTitle}
-      todos={todos}
-      setTodos={setTodos}
-      editableTodo={editableTodo}
-      setEditableTodo={setEditableTodo}
-      ></Form>
-      <Todos
-      todoTitle={todoTitle}
-      setTodoTitle={setTodoTitle}
-      todos={todos}
-      setTodos={setTodos}
-      editableTodo={editableTodo}
-      setEditableTodo={setEditableTodo}
-      ></Todos>
+      <todoContext.Provider value={todoState}>
+        <TodoWrapper todoState={todoState} />
+      </todoContext.Provider>
     </div>
   );
 }
